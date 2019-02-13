@@ -1,17 +1,26 @@
 export class CurrencyRate {
-    _rate: number;
-    _value: number;
+    // currency name besides USD
+    _currency: string;
+    // exchange rate of dollar currency
+    exchangeRate: number;
+    // initial value in dollar currency
+    initialValue: number;
 
-    constructor (rate: number, value: number) {
-        if (isEmptyOrNull(rate) || isEmptyOrNull(value)) {
-            throw new Error("Rate or Value Should not be null");
+    constructor (_currency:string, exchangeRate: number, value: number) {
+        if (isEmptyOrNull(exchangeRate) || isEmptyOrNull(value)) {
+            throw new Error("exchangeRate or Value Should not be null");
         }
-        this._rate = rate;
-        this._value = value;
+        this._currency = _currency;
+        this.exchangeRate = exchangeRate;
+        this.initialValue = value;
     }
 
-    get result () {
-        return this._rate * this._value;
+    get toDollarRate () {
+        return this.exchangeRate * this.initialValue;
+    }
+
+    get currency () {
+        return this._currency
     }
     
 }
